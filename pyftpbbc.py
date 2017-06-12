@@ -7,7 +7,7 @@ import StringIO
 
 # load ftp credentials (not public ask maarten or andrej) 
 
-def poll():
+def poll( filename = '20170608.txt' ):
     with open('ftp.json') as jsonf:
         ftpdata = json.loads(jsonf.read())
         pprint(ftpdata['ftp'])
@@ -24,8 +24,6 @@ def poll():
         # open(filename, 'wb').write
         def handle_binary(more_data):
             sio.write(more_data)
-
-        filename = '20170608.txt'
         
         resp = ftp.retrbinary("RETR " + filename, callback=handle_binary )
 
